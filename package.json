@@ -1,0 +1,11 @@
+{
+  "name": "NightWatchTest",
+  "version": "0.0.1",
+  "description": "NightWatchTest",
+  "dependencies": {
+    "chromedriver": "^2.19.0",    
+    "nightwatch": "^0.8.5",
+    "selenium-server": "2.48.2",
+    "log4js": "0.6.27"    
+  }  
+}
