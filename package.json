@@ -1,11 +1,17 @@
 {
   "name": "NightWatchTest",
   "version": "0.0.1",
-  "description": "NightWatchTest",
+  "description": "A test tool suite for Selenium testing using Nightwatchjs",
   "dependencies": {
     "chromedriver": "^2.19.0",    
-    "nightwatch": "^0.8.5",
+    "nightwatch": "^0.8.6",
     "selenium-server": "2.48.2",
-    "log4js": "0.6.27"    
+    "log4js": "0.6.27",        
+    "gulp": "^3.9.0",
+    "gulp-install": "^0.6.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.9.2",
+    "typescript": "^1.6.2",
+    "del": "^2.0.2"
   }  
 }

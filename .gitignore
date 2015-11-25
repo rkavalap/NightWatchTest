@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+bin
+obj/Debug
+buildOutput
+reports
+*.log
+.DS_Store
+.idea
+.ntvs_analysis.dat
+
+# Visual Studio related artifacts
+*.njsproj
+*.suo
+*.sln
