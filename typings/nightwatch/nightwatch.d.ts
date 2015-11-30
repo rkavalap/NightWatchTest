@@ -324,7 +324,7 @@ export interface NightWatchTestSettings {
     /**
     * An object which will be made available within the test and can be overwritten per environment. Example:"globals" : {  "myGlobal" : "some_global" }
     */
-    globals: NightWatchOptions;
+    globals: any;
 
     /**
     * An array of folders or file patterns to be skipped (relative to the main source folder). 
@@ -1654,7 +1654,7 @@ export interface NightWatchClient {
 
     currentTest: TestSuite;
 
-    globals: NightWatchOptions;
+    globals: any;
 
     launch_url: string;
 }
