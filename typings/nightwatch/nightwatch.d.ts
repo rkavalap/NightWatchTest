@@ -8,43 +8,165 @@
 import {NightWatchCustomCommands} from "../nightwatch-custom/custom-commands";
 import {NightWatchCustomPageObjects} from "../nightwatch-custom/page-objects";
 
+export interface DesiredCapabilities
+{
+    /**
+    * The name of the browser being used; should be one of {android|chrome|firefox|htmlunit|internet explorer|iPhone|iPad|opera|safari}.
+    */
+    browserName?: string;
+    
+    /**
+    * The browser version, or the empty string if unknown.
+    */
+    version?: string;
+    
+    /**
+    * A key specifying which platform the browser should be running on. This value should be one of {WINDOWS|XP|VISTA|MAC|LINUX|UNIX|ANDROID}. 
+    * When requesting a new session, the client may specify ANY to indicate any available platform may be used. 
+    * For more information see [GridPlatforms (https://code.google.com/p/selenium/wiki/GridPlatforms)]
+    */
+    platform?: string;
+    
+    /**
+    * Whether the session supports taking screenshots of the current page.
+    */
+    takesScreenShot: boolean;
+    
+    /**
+    * Whether the session can interact with modal popups, such as window.alert and window.confirm.
+    */
+    handlesAlerts: boolean;
+    
+    /**
+    * Whether the session supports CSS selectors when searching for elements.
+    */
+    cssSelectorsEnabled?: boolean;
+    
+    /**
+    * Whether the session supports executing user supplied JavaScript in the context of the current page (only on HTMLUnitDriver).
+    */
+    javascriptEnabled?: boolean;
+    
+    /**
+    * Whether the session can interact with database storage.
+    */
+    databaseEnabled?: boolean;
+    
+    /**
+    * Whether the session can set and query the browser's location context.
+    */
+    locationContextEnabled?: boolean;
+    
+    /**
+    * Whether the session can interact with the application cache.
+    */
+    applicationCacheEnabled?: boolean;
+    
+    /**
+    * Whether the session can query for the browser's connectivity and disable it if desired.
+    */
+    browserConnectionEnabled?: boolean;
+    
+    /**
+    * Whether the session supports interactions with storage objects (http://www.w3.org/TR/2009/WD-webstorage-20091029/).
+    */
+    webStorageEnabled?: boolean;
+    
+    /**
+    * Whether the session should accept all SSL certs by default.
+    */
+    acceptSslCerts?: boolean;
+    
+    /**
+    * Whether the session can rotate the current page's current layout between portrait and landscape orientations (only applies to mobile platforms).
+    */
+    rotatable?: boolean;
+    
+    /**
+    * Whether the session is capable of generating native events when simulating user input.
+    */
+    nativeEvents?: boolean;
+    
+    /**
+    * What the browser should do with an unhandled alert before throwing out the UnhandledAlertException. Possible values are "accept", "dismiss" and "ignore"
+    */
+    unexpectedAlertBehaviour?: string;
+    
+    /**
+    * Allows the user to specify whether elements are scrolled into the viewport for interaction to align with the top (0) or bottom (1) of the viewport. The default value is to align with the top of the viewport. Supported in IE and Firefox (since 2.36) 
+    */ 
+    elementScrollBehaviour?: number;
+    
+    /**
+    * A JSON object describing the logging level of different components in the browser, the driver, or any intermediary WebDriver servers. 
+    * Available values for most loggers are "OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST", "ALL". 
+    * This produces a JSON object looking something like: {"loggingPrefs": {"driver": "INFO", "server": "OFF", "browser": "FINE"}}.
+    */
+    loggingPrefs?: {
+        browser?: string;
+        driver?: string;
+        server?: string;
+    }   
+    
+}
+
+export interface ScreenshotOptions {   
+    enabled?: boolean;
+    on_failure?: boolean;
+    on_error?: boolean;
+    path?: string;
+
+}
+
+export interface NightWatchTestRunner {
+    "type"?: string;
+    options?: { 
+        ui?: string 
+    };
+}
+
+export interface NightWatchTestWorker {
+    enabled: boolean;
+    workers: string;
+}
+
 export interface NightWatchOptions {
 
     /**
     * An array of folders (excluding subfolders) where the tests are located.
     */
-    src_folders: string | any[];
+    src_folders: string | string[];
 
     /**
     * The location where the JUnit XML report files will be saved.
     */
-    output_folder: string;
+    output_folder?: string;
 
     /**
     * Location(s) where custom commands will be loaded from.
     */
-    custom_commands_path: string | any[];
+    custom_commands_path?: string | string[];
 
     /**
     * Location(s) where custom assertions will be loaded from.
     */
-    custom_assertions_path: string | any[];
+    custom_assertions_path?: string | string[];
 
     /**
     * Location(s) where page object files will be loaded from.
     */
-    page_object_path: string | any[];
+    page_object_path?: string | string[];
 
     /**
     * Location of an external globals module which will be loaded and made available to the test as a property globals on the main client instance. 
     * Globals can also be defined/overwritten inside a test_settings environment.
     */
-    globals_path: string;
+    globals_path?: string;
 
     /**
     * 	An object containing Selenium Server related configuration options. See below for details.
     */
-    selenium: SeleniumOptions;
+    selenium?: SeleniumOptions;
 
     /**
     * This object contains all the test related options. See below for details.
@@ -54,29 +176,29 @@ export interface NightWatchOptions {
     /**
     * Whether or not to buffer the output in case of parallel running. See below for details.
     */
-    live_output: boolean;
+    live_output?: boolean;
 
     /**
     * Controls whether or not to disable coloring of the cli output globally.
     */
-    disable_color: boolean;
+    disable_color?: boolean;
 
     /**
     * Specifies the delay(in milliseconds) between starting the child processes when running in parallel mode.
     */
-    parallel_process_delay: number;
+    parallel_process_delay?: number;
 
     /**
     * Whether or not to run individual test files in parallel. If set to true, runs the tests in parallel and determines the number of workers automatically. 
     * If set to an object, can specify specify the number of workers as "auto" or a number. Example: "test_workers" : {"enabled" : true, "workers" : "auto"}
     */
-    test_workers: boolean | any;
+    test_workers?: boolean | NightWatchTestWorker;
 
     /**
     * Specifies which test runner to use when running the tests. Values can be either default (built in nightwatch runner) or mocha. 
     * Example: "test_runner" : {"type" : "mocha", "options" : {"ui" : "tdd"}}
     */
-    test_runner: string | any;
+    test_runner?: string | NightWatchTestRunner;
 }
 
 export interface SeleniumOptions {
@@ -169,7 +291,7 @@ export interface NightWatchTestSettings {
     *      "path" : ""
     *      }
     */
-    screenshots: any;
+    screenshots: ScreenshotOptions;
 
     /**
     * In case the selenium server requires credentials this username will be used to compute the Authorization header. 
@@ -197,18 +319,18 @@ export interface NightWatchTestSettings {
     * }
     * You can view the complete list of capabilities https://code.google.com/p/selenium/wiki/DesiredCapabilities.         
     * */
-    desiredCapabilities: any;
+    desiredCapabilities: DesiredCapabilities;
 
     /**
     * An object which will be made available within the test and can be overwritten per environment. Example:"globals" : {  "myGlobal" : "some_global" }
     */
-    globals: any;
+    globals: NightWatchOptions;
 
     /**
     * An array of folders or file patterns to be skipped (relative to the main source folder). 
     * Example: "exclude" : ["excluded-folder"] or: "exclude" : ["test-folder/*-smoke.js"]
     */
-    exclude: any[];
+    exclude: string[];
 
     /**
     * Folder or file pattern to be used when loading the tests. Files that don't match this patter will be ignored. 
@@ -427,11 +549,11 @@ export interface Assertion extends NightWatchBrowser {
     */
     cssProperty: (cssSelector: string, cssProperty: string, expected: string | number, msg?: string) => NightWatchBrowser;
 
-    deepEqual: (value: any, message?: string) => NightWatchBrowser;
+    deepEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
-    deepStrictEqual: (value: any, message?: string) => NightWatchBrowser;
+    deepStrictEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
-    doesNotThrow: (value: any, message?: string) => NightWatchBrowser;
+    doesNotThrow: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
     /**
     * Checks if the given element exists in the DOM. 
@@ -469,11 +591,11 @@ export interface Assertion extends NightWatchBrowser {
 
     notEqual: (actual: any, expected: any, message?: string) => NightWatchBrowser;
 
-    notStrictEqual: (value: any, message?: string) => NightWatchBrowser;
+    notStrictEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
     ok: (callback?: CallbackResult, message?: string) => NightWatchBrowser;
 
-    strictEqual: (value: any, message?: string) => NightWatchBrowser;
+    strictEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
     throws: (fn: Function, msg?: string) => NightWatchBrowser;
 
@@ -1530,13 +1652,9 @@ export interface NightWatchClient {
 
     Keys: Keys;
 
-    /**
-    * TODO: Get the appropriate types for globals and other fields, once the circular reference issue is fixed in nightwatch. 
-    */
+    currentTest: TestSuite;
 
-    currentTest: any;
-
-    globals: any;
+    globals: NightWatchOptions;
 
     launch_url: string;
 }
