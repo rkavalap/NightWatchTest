@@ -30,7 +30,7 @@ export interface DesiredCapabilities
     /**
     * Whether the session supports taking screenshots of the current page.
     */
-    takesScreenShot: boolean;
+    takesScreenShot?: boolean;
     
     /**
     * Whether the session can interact with modal popups, such as window.alert and window.confirm.
@@ -106,7 +106,7 @@ export interface DesiredCapabilities
         browser?: string;
         driver?: string;
         server?: string;
-    }   
+    };   
     
 }
 
@@ -121,7 +121,7 @@ export interface ScreenshotOptions {
 export interface NightWatchTestRunner {
     "type"?: string;
     options?: { 
-        ui?: string 
+        ui?: string; 
     };
 }
 

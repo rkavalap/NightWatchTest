@@ -16,7 +16,7 @@
         "cli_args": {
             "webdriver.chrome.driver": "node_modules/chromedriver/lib/chromedriver/chromedriver.exe",
             "webdriver.ie.driver": ""
-        }     
+        }
     },
 
 
@@ -36,13 +36,24 @@
                 "acceptSslCerts": true,
                 "loggingPrefs": {
                     "browser": "ALL",
-                    "driver": "ALL"                    
+                    "driver": "ALL"
                 }
             }
         },
         "chrome": {
             "desiredCapabilities": {
                 "browserName": "chrome",
+                "javascriptEnabled": true,
+                "acceptSslCerts": true,
+                "loggingPrefs": {
+                    "browser": "ALL",
+                    "driver": "ALL"
+                }
+            }
+        },
+        "firefox": {
+            "desiredCapabilities": {
+                "browserName": "firefox",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true,
                 "loggingPrefs": {
