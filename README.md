@@ -13,7 +13,7 @@ Sample project created to try NightWatch Browser UI Test framework using nodejs,
 <br>gulp
 
 #To run:
-<br>node node_modules/nightwatch/bin/runner.js -t buildOutput/javascript1.js --env chrome
+<br>node node_modules/nightwatch/bin/runner.js -t buildOutput/javascript1.js --env devtest-chrome-win8
 
 #Project source:
 <br>tests   -> Contains all the UI test
