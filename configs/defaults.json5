@@ -1,0 +1,44 @@
+﻿// Base Nightwatch configs
+{
+    src_folders: "buildOutput",
+    output_folder: "reports",
+    globals_path: "globalsModule.js",
+    custom_reporter_path: "",
+    custom_commands_path: "",
+    custom_assertions_path: "",
+    page_objects_path: "",
+
+    test_settings: {
+        // Nightwatch default environment, used if no --env is specified. These values also extend configs from other --env if specified.
+        default: {
+            launch_url: "http://google.com",            
+            selenium_host: "127.0.0.1",
+            selenium_port: 4444,
+            selenium: {
+                start_process: true,
+                host: "127.0.0.1",
+                port: 4444,
+                server_path: "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.48.2.jar",
+                cli_args: {
+                    "webdriver.chrome.driver": "node_modules/.bin/chromedriver",
+                    "webdriver.ie.driver": "",
+                    "webdriver.firefox.profile": ""
+                }                               
+            },            
+            silent: true,
+            end_session_on_fail: false,
+            username: "${SAUCELABS_USER}",
+            access_key: "${SAUCELABS_KEY}",            
+            desiredCapabilities: {
+                platform: "Windows 8",
+                browserName: "chrome",
+                javascriptEnabled: true,
+                acceptSslCerts: true,                
+                loggingPrefs: {
+                    browser: "ALL",
+                    driver: "ALL"
+                }
+            },			
+        }
+    },
+}

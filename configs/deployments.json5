@@ -1,0 +1,15 @@
+﻿// Note: the deployment objects here are combined with the objects in capabilities.json. So adding a property to "devtest", for example, will add it to EVERY generated "devtest-*" environment.
+{
+    devtest: {        
+        launch_url: "http://google.com"		
+	},
+
+    ci: {        
+        launch_url: "http://google.com"               
+    },   
+
+    prod: {
+        
+        launch_url: "http://google.com"        		
+    }   
+}

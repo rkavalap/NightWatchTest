@@ -1,0 +1,89 @@
+﻿// Note: the browser-platform objects here are combined with the objects in deployments.json. So adding a property to "chrome-win8", for example, will add it to EVERY generated "*-chrome-win8" environment.
+{
+    "chrome-win8": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "chrome"            
+        }
+    },
+
+    "chrome-win7": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "chrome"            
+        }
+    },
+
+    "chrome-win7-1280-small": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "chrome",
+            screenResolution: "1280x800"            
+        }
+    },
+
+    "chrome-win7-1920": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "chrome",
+            screenResolution: "1920x1200"
+        }            
+    },
+
+    "chrome-win7-1400": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "chrome",
+            screenResolution: "1400x1050"            
+        }
+    },
+
+    "chrome-win7-2560": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "chrome",
+            screenResolution: "2560x1600"            
+        }
+    },
+
+    "ie10-win8": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "internet explorer",
+            version: "10",
+        }
+    },    
+
+    "ie10-win7": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "internet explorer",
+            version: "10",
+        }
+    },
+
+    "chrome-win8-1280": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "chrome",
+            screenResolution: "1280x1024"            
+        }
+    },
+
+    "chrome-win8-1024": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "chrome",
+            screenResolution: "1024x768"            
+        }
+    },
+
+    "ie10-win8-1280": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "internet explorer",
+            version: "10",
+            screenResolution: "1280x1024"
+        }
+    }  	
+}
