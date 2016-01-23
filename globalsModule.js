@@ -3,6 +3,16 @@ var minimist = require('minimist');
 
 var fs = require("fs-extra");
 
+function generateUUID() {
+     var d = new Date().getTime();
+     var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+         var r = (d + Math.random() * 16) % 16 | 0;
+         d = Math.floor(d / 16);
+         return (c == "x" ? r : (r & 0x3 | 0x8)).toString(16);
+     });
+     return uuid;
+};
+
 function createDir(path) {
     fs.mkdirsSync(path, function (err) {
         if (err) {
@@ -10,6 +20,9 @@ function createDir(path) {
         }
     });
 }
+
+var folderLogPath = "TestResults" + "\/" + generateUUID();
+createDir(folderLogPath);
 
 var globals = {
     
@@ -49,13 +62,13 @@ var globals = {
 
         var slashIndex = (browser.currentTest.module.lastIndexOf("\/") > browser.currentTest.module.lastIndexOf("\\")) ? browser.currentTest.module.lastIndexOf("\/") : browser.currentTest.module.lastIndexOf("\\");
         var folderName = browser.currentTest.module.substring(0, slashIndex) + "/seleniumAndBrowserLogs";
-        var seleniumAndBrowserLogPath = "TestResults" + "\/" + folderName;
+        var seleniumAndBrowserLogPath = folderLogPath + "\/" + folderName;
         createDir(seleniumAndBrowserLogPath);
 
         var executingTestCaseName = browser.currentTest.module.substring(slashIndex, browser.currentTest.module.length);
         
-        var seleniumLogPath = executingTestCaseName + "-selenium-driver.log";
-        var browserLogPath = executingTestCaseName + "-browser.log";
+        var seleniumLogPath = seleniumAndBrowserLogPath + "\/" + executingTestCaseName + "-selenium-driver.log";
+        var browserLogPath = seleniumAndBrowserLogPath + "\/" + executingTestCaseName + "-browser.log";
         
         var log4js = require("log4js");
         log4js.configure({
