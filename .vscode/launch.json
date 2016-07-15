@@ -5,12 +5,12 @@
 			"name": "Launch",
 			"type": "node",
 			"request": "launch",
-			"program": "node_modules/nightwatch/bin/runner.js",
+			"program": "${workspaceRoot}/node_modules/nightwatch/bin/runner.js",
 			"stopOnEntry": false,
 			"args": [
-                "--test", "buildOutput/JavaScript1.js", "--env", "devtest-chrome-win8"
+                "--test", "buildOutput/JavaScript1.js", "--env", "devtest-localSafari"
             ],
-			"cwd": ".",
+			"cwd": "${workspaceRoot}",
 			"runtimeExecutable": null,
 			"runtimeArgs": [				
 			],

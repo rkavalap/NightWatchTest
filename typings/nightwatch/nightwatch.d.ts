@@ -593,7 +593,7 @@ export interface Assertion extends NightWatchBrowser {
 
     notStrictEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
-    ok: (callback?: CallbackResult, message?: string) => NightWatchBrowser;
+    ok: (actual: boolean, message?: string) => NightWatchBrowser;
 
     strictEqual: (value: any, expected: any, message?: string) => NightWatchBrowser;
 
@@ -655,9 +655,12 @@ export interface Assertion extends NightWatchBrowser {
 
 }
 
-export interface CallbackResult {
+export interface TypedCallbackResult<T> {
     status: number;
-    value: string | any;
+    value: T;
+}
+
+export interface CallbackResult extends TypedCallbackResult<string | any> {
 }
 
 export interface LogEntry {
@@ -681,121 +684,125 @@ export interface LogEntry {
 export interface Keys {
 
     /** Releases all held modifier keys. */
-    'NULL': string;
+    "NULL": string;
     /** OS-specific keystroke sequence that performs a cancel action. */
-    'CANCEL': string;
+    "CANCEL": string;
     /** The help key. This key only appears on older Apple keyboards in place of the Insert key. */
-    'HELP': string;
+    "HELP": string;
     /** The backspace key. */
-    'BACKSPACE': string;
+    "BACK_SPACE": string;
     /** The tab key. */
-    'TAB': string;
+    "TAB": string;
     /** The clear key. This key only appears on full-size Apple keyboards in place of Num Lock key. */
-    'CLEAR': string;
+    "CLEAR": string;
     /** The return key. */
-    'RETURN': string;
+    "RETURN": string;
     /** The enter (numpad) key. */
-    'ENTER': string;
+    "ENTER": string;
     /** The shift key. */
-    'SHIFT': string;
+    "SHIFT": string;
     /** The control key. */
-    'CONTROL': string;
+    "CONTROL": string;
     /** The alt key. */
-    'ALT': string;
+    "ALT": string;
     /** The pause key. */
-    'PAUSE': string;
+    "PAUSE": string;
     /** The escape key. */
-    'ESCAPE': string;
+    "ESCAPE": string;
 
     /** The space bar. */
-    'SPACE': string;
+    "SPACE": string;
     /** The page up key. */
-    'PAGEUP': string;
+    "PAGEUP": string;
     /** The page down key. */
-    'PAGEDOWN': string;
+    "PAGEDOWN": string;
     /** The end key. */
-    'END': string;
+    "END": string;
     /** The home key. */
-    'HOME': string;
+    "HOME": string;
     /** The left arrow. */
-    'ARROW_LEFT': string;
+    "ARROW_LEFT": string;
+    "LEFT_ARROW": string;
     /** The up arrow. */
-    'ARROW_UP': string;
+    "ARROW_UP": string;
+    "UP_ARROW": string;
     /** The right arrow. */
-    'ARROW_RIGHT': string;
+    "ARROW_RIGHT": string;
+    "RIGHT_ARROW": string;
     /** The down arrow. */
-    'ARROW_DOWN': string;
+    "ARROW_DOWN": string;
+    "DOWN_ARROW": string;
     /** The insert key. */
-    'INSERT': string;
+    "INSERT": string;
     /** The delete key. */
-    'DELETE': string;
+    "DELETE": string;
     /** The semicolon key. */
-    'SEMICOLON': string;
+    "SEMICOLON": string;
     /** The equals key. */
-    'EQUALS': string;
+    "EQUALS": string;
 
     /** The numpad zero key. */
-    'NUMPAD0': string;
+    "NUMPAD0": string;
     /** The numpad one key. */
-    'NUMPAD1': string;
+    "NUMPAD1": string;
     /** The numpad two key. */
-    'NUMPAD2': string;
+    "NUMPAD2": string;
     /** The numpad three key. */
-    'NUMPAD3': string;
+    "NUMPAD3": string;
     /** The numpad four key. */
-    'NUMPAD4': string;
+    "NUMPAD4": string;
     /** The numpad five key. */
-    'NUMPAD5': string;
+    "NUMPAD5": string;
     /** The numpad six key. */
-    'NUMPAD6': string;
+    "NUMPAD6": string;
     /** The numpad seven key. */
-    'NUMPAD7': string;
+    "NUMPAD7": string;
     /** The numpad eight key. */
-    'NUMPAD8': string;
+    "NUMPAD8": string;
     /** The numpad nine key. */
-    'NUMPAD9': string;
+    "NUMPAD9": string;
 
     /** The numpad multiply (*) key. */
-    'MULTIPLY': string;
+    "MULTIPLY": string;
     /** The numpad add (+) key. */
-    'ADD': string;
+    "ADD": string;
     /** The numpad separator (=) key. */
-    'SEPARATOR': string;
+    "SEPARATOR": string;
     /** The numpad subtract (-) key. */
-    'SUBTRACT': string;
+    "SUBTRACT": string;
     /** The numpad decimal (.) key. */
-    'DECIMAL': string;
+    "DECIMAL": string;
     /** The numpad divide (/) key. */
-    'DIVIDE': string;
+    "DIVIDE": string;
 
     /** The F1 key. */
-    'F1': string;
+    "F1": string;
     /** The F2 key. */
-    'F2': string;
+    "F2": string;
     /** The F3 key. */
-    'F3': string;
+    "F3": string;
     /** The F4 key. */
-    'F4': string;
+    "F4": string;
     /** The F5 key. */
-    'F5': string;
+    "F5": string;
     /** The F6 key. */
-    'F6': string;
+    "F6": string;
     /** The F7 key. */
-    'F7': string;
+    "F7": string;
     /** The F8 key. */
-    'F8': string;
+    "F8": string;
     /** The F9 key. */
-    'F9': string;
+    "F9": string;
     /** The F10 key. */
-    'F10': string;
+    "F10": string;
     /** The F11 key. */
-    'F11': string;
+    "F11": string;
     /** The F12 key. */
-    'F12': string;
+    "F12": string;
     /** The meta (Windows) key. */
-    'META': string;
+    "META": string;
     /** The command (⌘) key. */
-    'COMMAND': string;
+    "COMMAND": string;
 
 
 }
@@ -962,8 +969,8 @@ export interface NightWatchClient {
     getValue: (selector: string, callback?: () => void) => NightWatchBrowser;
 
     /**
-    * This command is an alias to url and also a convenience method when called without any arguments in the sense that it performs a call to .url() with passing the value of launch_url field from the settings file.
-    * Uses url protocol command. 
+    * This command is an alias to url and also a convenience method when called without any arguments in the sense that it performs a call to .url() with passing the value of launch_url 
+    * field from the settings file. Uses url protocol command. 
     * @param url: Url to navigate to. 
     * @returns {} 
     */
@@ -1021,10 +1028,10 @@ export interface NightWatchClient {
 
     /**
     * A simple perform command which allows access to the "api" in a callback. Can be useful if you want to read variables set by other commands.
-    * @param callback: the function to run as part of the queue; it is called with the <code>browser</code> object as the first argument and optionally a <code>done</code> callback in case of an async operation. 
+    * @param callback: the function to run as part of the queue; it is called with the <code>browser</code> object as the first argument and a <code>done</code> callback in case of an async operation. 
     * @returns {} 
     */
-    perform: (callback: (result: CallbackResult) => void) => NightWatchBrowser;
+    perform: (callback: (browser: NightWatchBrowser, done?: () => void) => void) => NightWatchBrowser;
 
     /**
     * Resizes the current window. 
@@ -1042,6 +1049,18 @@ export interface NightWatchClient {
     * @returns {} 
     */
     saveScreenshot: (fileName: string, callback?: () => void) => NightWatchBrowser;
+
+    /**
+     * SessionId of the session used by the Nightwatch api.
+     */
+    sessionId: string;
+    
+   /**
+   * Override the sessionId used by Nightwatch client with another session id.
+   * @param sessionId: The session Id to set.
+   * @returns {} 
+   */
+    setSessionId: (sessionId:string)=> NightWatchBrowser;
 
     /**
     * Set a cookie, specified as a cookie JSON object, as defined https://code.google.com/p/selenium/wiki/JsonWireProtocol#Cookie_JSON_Object. 
@@ -1218,6 +1237,7 @@ export interface NightWatchClient {
     * @returns {} 
     */
     elementIdAttribute: (id: string, attributeName: string, callback?: () => void) => NightWatchBrowser;
+
     /**
     * Clear a TEXTAREA or text INPUT element's value.
     * @param id: ID of the element to route the command to.  
@@ -1366,7 +1386,7 @@ export interface NightWatchClient {
     * @param callback: Optional callback function to be called when the command finishes. 
     * @returns {The script result.} 
     */
-    execute: (body: ((data: any) => void) | string, args?: string[], callback?: (result: CallbackResult) => void) => NightWatchBrowser;
+    execute: (body: ((...data: any[]) => void) | string, args?: any[], callback?: (result: CallbackResult) => void) => NightWatchBrowser;
 
     /**
     * Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame. The executed script is assumed to be asynchronous and the result of evaluating the script is returned to the client. 
@@ -1376,7 +1396,7 @@ export interface NightWatchClient {
     * @param callback: Optional callback function to be called when the command finishes.  
     * @returns {The script result.} 
     */
-    executeAsync: (script: ((data: any) => void) | string, args?: string[], callback?: (result: CallbackResult) => void) => NightWatchBrowser;
+    executeAsync: (script: ((...data: any[]) => void) | string, args?: any[], callback?: (result: CallbackResult) => void) => NightWatchBrowser;
 
     /**
     * Navigate forwards in the browser history, if possible.
@@ -1620,10 +1640,10 @@ export interface NightWatchClient {
     windowHandles: (callback?: () => void) => NightWatchBrowser;
 
     /**
-        * Retrieve the current window handle.
-        * @param callback: Optional callback function to be called when the command finishes. 
-        * @returns {} 
-        */
+    * Retrieve the current window handle.
+    * @param callback: Optional callback function to be called when the command finishes. 
+    * @returns {} 
+    */
     windowMaximize: (callback?: () => void) => NightWatchBrowser;
 
     /**
@@ -1648,7 +1668,6 @@ export interface NightWatchClient {
     * @returns {} 
     */
     useCss: () => NightWatchBrowser;
-
 
     Keys: Keys;
 

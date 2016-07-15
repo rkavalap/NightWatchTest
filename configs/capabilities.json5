@@ -46,22 +46,6 @@
         }
     },
 
-    "ie10-win8": {
-        desiredCapabilities: {
-            platform: "Windows 8",
-            browserName: "internet explorer",
-            version: "10",
-        }
-    },    
-
-    "ie10-win7": {
-        desiredCapabilities: {
-            platform: "Windows 7",
-            browserName: "internet explorer",
-            version: "10",
-        }
-    },
-
     "chrome-win8-1280": {
         desiredCapabilities: {
             platform: "Windows 8",
@@ -78,6 +62,40 @@
         }
     },
 
+    "ie10-win8": {
+        desiredCapabilities: {
+            platform: "Windows 8",
+            browserName: "internet explorer",
+            version: "10",
+        }
+    },
+
+    "ie-Edge": {
+        desiredCapabilities: {
+            platform: "Windows 10",
+            browserName: "MicrosoftEdge",
+            screenResolution: "1280x1024",
+            version: "13.10586",
+            avoidProxy: true
+        }
+    },    
+
+    "ie10-win7": {
+        desiredCapabilities: {
+            platform: "Windows 7",
+            browserName: "internet explorer",
+            version: "10",
+        }
+    },
+    
+    "ie11-win8": {
+        desiredCapabilities: {
+            platform: "Windows 8.1",
+            browserName: "internet explorer",
+            version: "11"
+        }
+    },
+
     "ie10-win8-1280": {
         desiredCapabilities: {
             platform: "Windows 8",
@@ -85,5 +103,74 @@
             version: "10",
             screenResolution: "1280x1024"
         }
-    }  	
+    },
+
+    "safari6-mountainlion": {
+        desiredCapabilities: {
+            platform: "OS X 10.8",
+            browserName: "safari",            
+        }
+    },
+	
+	"chrome-mountainlion": {
+        desiredCapabilities: {
+            platform: "OS X 10.8",
+            browserName: "chrome",
+            loggingPrefs: {
+                browser: "ALL",
+                driver: "ALL"
+            }
+        }
+    },
+
+    "localchrome": {
+        selenium_host: "127.0.0.1",
+        selenium_port: 4444,
+        selenium: {
+            start_process: true,
+            host: "127.0.0.1",
+            port: 4444,
+            server_path: "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.52.0.jar",
+            cli_args: {
+                "webdriver.chrome.driver": "node_modules/.bin/chromedriver",
+                "webdriver.ie.driver": "",
+                "webdriver.firefox.profile": ""
+            }
+        },
+        desiredCapabilities: {            
+            browserName: "chrome",            
+            loggingPrefs: {
+                browser: "ALL",
+                driver: "ALL"
+            }
+        }
+    },
+
+    // only works for windows
+	"localIE": {
+        selenium_host: "127.0.0.1",
+        selenium_port: 4444,
+        selenium: {
+            start_process: true,
+            host: "127.0.0.1",
+            port: 4444,
+            server_path: "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.52.0.jar",
+            cli_args: {
+		    // iedriver is 32 bit, if want to use 64 bit, need to add "ie64driver": "^version No." in package.json
+                "webdriver.ie.driver": "node_modules/.bin/iedriver",
+            }			
+        },
+	    desiredCapabilities: {		
+            browserName: "internet explorer",
+        }
+    },
+     
+    // only works on mac
+    "localSafari": {
+        "desiredCapabilities" : {
+            "browserName" : "safari",
+            "javascriptEnabled" : true,
+            "acceptSslCerts" : true
+        }
+    },  	
 }

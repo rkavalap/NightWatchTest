@@ -11,24 +11,16 @@
     test_settings: {
         // Nightwatch default environment, used if no --env is specified. These values also extend configs from other --env if specified.
         default: {
-            launch_url: "http://google.com",            
-            selenium_host: "127.0.0.1",
-            selenium_port: 4444,
+            launch_url: "http://google.com",
+            selenium_host: "ondemand.saucelabs.com",
+            selenium_port: 80,
             selenium: {
-                start_process: true,
-                host: "127.0.0.1",
-                port: 4444,
-                server_path: "node_modules/selenium-server/lib/runner/selenium-server-standalone-2.48.2.jar",
-                cli_args: {
-                    "webdriver.chrome.driver": "node_modules/.bin/chromedriver",
-                    "webdriver.ie.driver": "",
-                    "webdriver.firefox.profile": ""
-                }                               
-            },            
+                start_process: false                
+            },
             silent: true,
             end_session_on_fail: false,
-            username: "${SAUCELABS_USER}",
-            access_key: "${SAUCELABS_KEY}",            
+            username: "${SAUCELABS_USER}", // replace with your sauce user name
+            access_key: "${SAUCELABS_KEY}", // replace with your api key of the sauce user                       
             desiredCapabilities: {
                 platform: "Windows 8",
                 browserName: "chrome",
