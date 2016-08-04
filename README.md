@@ -33,7 +33,7 @@ To proceed you need a Mac, Windows, or Linux machine, and:
 ----------------------------
 
 ```
-    gulp
+    npm run build
 ```
 
 ##To Execute Test:

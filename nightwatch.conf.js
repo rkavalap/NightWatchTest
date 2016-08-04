@@ -75,9 +75,9 @@ deployments = checkConfigPath("./configs/deployments");
 
 capabilities = checkConfigPath("./configs/capabilities");
 
-mergeDeploymentAndCapabilitiesJson();
+capabilities["localchrome"].selenium.cli_args["webdriver.chrome.driver"] += SUFFIX;
 
-configs["test_settings"].default.selenium.cli_args["webdriver.chrome.driver"] += SUFFIX;
+mergeDeploymentAndCapabilitiesJson();
 
 doEnvironments(resolve(__dirname, "configs/TestConfigData"));
 

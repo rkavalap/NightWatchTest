@@ -5,7 +5,7 @@
   "dependencies": {
     "chromedriver": "^2.20.0",    
     "nightwatch": "^0.8.15",
-    "selenium-server": "2.48.3",
+    "selenium-server": "2.52.0",
     "log4js": "0.6.29",        
     "gulp": "^3.9.0",
     "gulp-install": "^0.6.0",
@@ -17,5 +17,9 @@
     "lodash": "^3.10.1",
     "minimist": "^1.2.0",
     "fs-extra": "0.26.3"        
+  },
+  "scripts": {
+	"prebuild": "typings install nightwatch",
+	"build": "gulp"
   }  
 }

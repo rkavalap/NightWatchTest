@@ -4,6 +4,7 @@ bin
 obj/Debug
 buildOutput
 reports
+typings
 *.log
 .DS_Store
 .idea
