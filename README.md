@@ -70,12 +70,19 @@ When `nightwatch` starts, it's passed configuration that is gathered or generate
 ##Project source Layout:
 ------------------------
 
-tests   -> Contains all the UI test scripts.
-typings -> Contains the typescript definition files for Nightwatch, Nodejs used for Intellisense
-globalsmodule.js -> Nightwatch globals module file
-gulpfile.js -> Build file (compiltation from ts to js using Gulp)
-nightwatch.conf.js -> config file for nightwatch
-package.json -> dependent nodejs packages used for this project installed under node_modules directory
+* `tests`   - Contains all the UI test scripts.
+* `globalsmodule.js` - Nightwatch globals module file
+* `gulpfile.js` - Build file (compilation from ts to js using Gulp)
+* `nightwatch.conf.js` - config file for nightwatch
+* `package.json` - dependent nodejs packages used for this project installed under node_modules directory
+* `typings` - Created on execution of build. Provides intellisense support for Nightwatch framework.
+
+##Intellisense 
+------------------------
+
+![VS Code](https://cloud.githubusercontent.com/assets/80310/17427868/e05a09fe-5a98-11e6-8c77-882095244bf5.png)
+
+Experience should be similar to Visual studio and other IDE's supporting Typescript Intellisense.
 
 ##References
 ------------
